@@ -1,6 +1,21 @@
 import streamlit as st
 import os
 
+import time
+
+placeholder = st.empty()
+
+with placeholder.container():
+    st.markdown("<h1 style='text-align:center;'>🚀 Mavericks</h1>", unsafe_allow_html=True)
+    time.sleep(2)
+
+placeholder.empty()
+
+password = st.text_input("Enter Admin Password", type="password")
+
+if password != "muna123":
+    st.stop()
+
 # ---------------------------
 # PAGE CONFIG
 # ---------------------------
@@ -9,6 +24,16 @@ st.set_page_config(
     layout="wide",
     page_icon="🚀"
 )
+st.markdown("""
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1C57N3TE8E"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-1C57N3TE8E');
+</script>
+""", unsafe_allow_html=True)
 
 # ---------------------------
 # DARK / LIGHT MODE TOGGLE
@@ -208,6 +233,20 @@ st.markdown("""
 - 🌐 linguarai.com  
 - 💼 https://github.com/Mhuna91/
 """)
+
+-st.markdown("""
+<a href="https://wa.me/2348100622292" target="_blank">
+<button style="
+background-color:#25D366;
+color:white;
+padding:15px;
+border:none;
+border-radius:10px;
+font-size:16px;">
+💼 Hire Me on WhatsApp
+</button>
+</a>
+""", unsafe_allow_html=True)
 
 st.success("🚀 Portfolio Live & Premium Ready!")
 
