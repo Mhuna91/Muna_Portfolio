@@ -1,4 +1,4 @@
-# 🚀 Muna Portfolio
+# 🚀 MUNA PORTFOLIO
 
 This is my professional portfolio showcasing:
 
