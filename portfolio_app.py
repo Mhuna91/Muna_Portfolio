@@ -79,10 +79,10 @@ with col1:
         st.warning("Add profile.jpg to assets folder")
 
 with col2:
-    st.title("🚀 Mavericks Portfolio")
-    st.subheader("AI Engineer | Data Scientist | Recommender Systems")
-    st.markdown("🌐 [linguarai.com](https://linguarai.com)")
-    st.write(f"👀 Visitors: {count}")
+    st.markdown("""
+<h1 style='font-size:48px;'>🚀 Mavericks Portfolio</h1>
+<p style='font-size:20px;'>AI Engineer | Data Scientist | Recommender Systems</p>
+""", unsafe_allow_html=True)
 
 st.divider()
 
@@ -149,6 +149,16 @@ netlify_links = [
 
 for link in netlify_links:
     st.markdown(f"- 🔗 {link}")
+    
+cols = st.columns(2)
+for i, (name, link) in enumerate(projects):
+    with cols[i % 2]:
+        st.markdown(f"""
+        <div class="card">
+        <h3>{name}</h3>
+        <a href="{link}" target="_blank">🚀 Open App</a>
+        </div>
+        """, unsafe_allow_html=True)
 
 st.divider()
 
