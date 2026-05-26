@@ -47,8 +47,35 @@ gtag('config', 'G-1C57N3TE8E');
 # ---------------------------
 # VISITOR COUNTER (REAL)
 # ---------------------------
-count = requests.get("https://api.countapi.xyz/hit/muna-portfolio/visits").json()["value"]
+# ---------------------------
+# VISITOR COUNTER (ROBUST)
+# ---------------------------
+def get_visitor_count():
+    try:
+        res = requests.get(
+            "https://api.countapi.xyz/hit/muna-portfolio/visits",
+            timeout=3
+        )
+        return res.json().get("value", 0)
+    except:
+        # fallback to local counter if API fails
+        local_file = "counter.txt"
 
+        if not os.path.exists(local_file):
+            with open(local_file, "w") as f:
+                f.write("0")
+
+        with open(local_file, "r") as f:
+            count = int(f.read())
+
+        count += 1
+
+        with open(local_file, "w") as f:
+            f.write(str(count))
+
+        return count
+
+count = get_visitor_count()
 # ---------------------------
 # SIDEBAR NAVIGATION
 # ---------------------------
@@ -170,14 +197,12 @@ elif menu == "Netlify Projects":
     ]
     cols = st.columns(2)
 
-    for i, (name, link) in enumerate(projects):
-        with cols[i % 2]:
-            st.markdown(f"""
-            <div class="card">
-                <h3>{name}</h3>
-                <a href="{link}" target="_blank">🚀 Launch Project</a>
-            </div>
-            """, unsafe_allow_html=True)
+    for link in netlify_links:
+    st.markdown(f"""
+    <div class="card">
+        <a href="{link}" target="_blank">🚀 Open Project</a>
+    </div>
+    """, unsafe_allow_html=True)
 
 # ---------------------------
 # CERTIFICATES
