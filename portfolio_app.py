@@ -50,6 +50,7 @@ gtag('config', 'G-1C57N3TE8E');
 # ---------------------------
 # VISITOR COUNTER (ROBUST)
 # ---------------------------
+@st.cache_data(ttl=60)
 def get_visitor_count():
     try:
         res = requests.get(
@@ -196,13 +197,12 @@ elif menu == "Netlify Projects":
     
     ]
     cols = st.columns(2)
-
     for link in netlify_links:
-    st.markdown(f"""
-    <div class="card">
-        <a href="{link}" target="_blank">🚀 Open Project</a>
-    </div>
-    """, unsafe_allow_html=True)
+        st.markdown(f"""
+        <div class="card">
+            <a href="{link}" target="_blank">🚀 Open Project</a>
+        </div>
+        """, unsafe_allow_html=True)
 
 # ---------------------------
 # CERTIFICATES
